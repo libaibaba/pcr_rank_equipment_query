@@ -1,0 +1,2 @@
+# pcr_rank_equipment_query
+一个pcr装备查询软件
