@@ -3,4 +3,4 @@
 数据库来源 https://redive.estertion.win
 
 代码参考 https://github.com/MalitsPlus/ShizuruNotes
-        https://github.com/Perfare/AssetStudio
+        \n\r https://github.com/Perfare/AssetStudio
