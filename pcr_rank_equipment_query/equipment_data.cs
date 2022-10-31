@@ -15,13 +15,15 @@ namespace pcr_rank_equipment_query
         public int equipment_id { get; set; }
         public string equipment_name { get; set; }
         public int consume_num_1 { get; set; }
+        public int haixu { get; set; }
+        public int jixu { get; set; }
         public void SetSubItems()
         {
             Text = equipment_name;
             SubItems.AddRange(new[]
             {
                 consume_num_1.ToString(),
-                equipment_id.ToString()
+                haixu.ToString()
             });
             //MessageBox.Show(equipment_name);
         }
@@ -31,6 +33,14 @@ namespace pcr_rank_equipment_query
         public int unit_id { get; set; }
         public string unit_name { get; set; }
         public string bieming { get; set; }
+        public int battle_rarityf { get; set; }
+        public int rank { get; set; }
+        public int equip_slot1 { get; set; }
+        public int equip_slot2 { get; set; }
+        public int equip_slot3 { get; set; }
+        public int equip_slot4 { get; set; }
+        public int equip_slot5 { get; set; }
+        public int equip_slot6 { get; set; }
 
         public void SetSubItems()
         {
@@ -82,17 +92,49 @@ namespace pcr_rank_equipment_query
         public string quest_name { get; set; }
         public int odds { get; set; }
         public Color color { get; set; }
+        public Color foreColor { get; set; }
         public List<wave_group_data_List> wave_group_data_list { get; set; }
+        public int count { get; set; }
+        public int quest_idaddcount { get; set; }
+        public List<Map_data> map_wave_data_visible { get; set; }
 
         public void SetSubItems()
         {
-            Text = questType(areaId) + " " + quest_name;
-            BackColor = color;
-            SubItems.AddRange(new[]
+            Text = questType(this.areaId);
+            ForeColor = ColorTranslator.FromHtml("#f1fef7");
+            BackColor = Text == "Normal" ? ColorTranslator.FromHtml("#5ea4d8") : ColorTranslator.FromHtml("#c36b77");
+
+            UseItemStyleForSubItems = false;
+
+            ListViewSubItem quest_name_si = new ListViewSubItem() {
+                Text = this.quest_name,
+                BackColor = this.color,
+                ForeColor = this.foreColor
+            };
+            
+            ListViewSubItem odds_si = new ListViewSubItem() {
+                Text = this.odds.ToString() + "% ",
+                BackColor = this.color,
+                ForeColor = this.foreColor
+            };
+            
+            ListViewSubItem count_si = new ListViewSubItem() {
+                Text = this.count.ToString(),
+                BackColor = this.color,
+                ForeColor = this.foreColor
+            };
+
+            SubItems.AddRange(new[] { quest_name_si, odds_si, count_si});
+            /*SubItems.Add(quest_name_si);
+            SubItems.Add(odds_si);
+            SubItems.Add( count_si);*/
+
+            /*SubItems.AddRange(new[]
             {
-                odds.ToString()+"%",
-                quest_name
-            });
+                quest_name,
+                odds.ToString()+"% ",
+                count.ToString()
+            });*/
         }
         public string questType(int areaId)
         {
@@ -119,6 +161,12 @@ namespace pcr_rank_equipment_query
 
     #region Quest old
 
+    internal class kucun_data
+    {
+        public int field1 { get; set; }
+        public string field2 { get; set; }
+        public int field3 { get; set; }
+    }
     internal class wave_group_data
     {
         public int wave_group_id { get; set; }
@@ -157,5 +205,24 @@ namespace pcr_rank_equipment_query
         public int drop_reward_id { get; set; }
         public int reward_id { get; set; }
         public int odds { get; set; }
+    }
+
+    internal class Map_data : ListViewItem
+    {
+        public string reward_name { get; set; }
+        public int odds { get; set; }
+        public Color color { get; set; }
+        public int kucun { get; set; }
+        public void SetSubItems()
+        {
+            Text = reward_name;
+            BackColor = color;
+            SubItems.AddRange(new[]
+            {
+                odds.ToString(),
+                kucun.ToString(),
+                reward_name
+            });
+        }
     }
 }
