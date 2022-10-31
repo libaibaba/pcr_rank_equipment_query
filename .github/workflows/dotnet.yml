@@ -40,6 +40,7 @@ jobs:
       run: cd $GITHUB_WORKSPACE
 
     - run: |
+        nuget restore pcr_rank_equipment_query.sln
         sed -i "s/18/19/g" pcr_rank_equipment_query/bin/Release/load.txt
 
     - name: Build Solution
