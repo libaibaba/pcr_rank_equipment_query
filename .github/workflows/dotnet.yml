@@ -41,6 +41,7 @@ jobs:
 
     - run: |
         sed -i "s/18/19/g" pcr_rank_equipment_query/bin/Release/load.txt
+        nuget restore pcr_rank_equipment_query.sln
 
     - name: Build Solution
       run: |
